@@ -1,0 +1,83 @@
+---
+title: "Reproducible_Report"
+author: "Rui"
+date: "12 Dezember 2017"
+output: 
+ word_document:
+   reference_docx: style.docx
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## This is my Report
+
+# Advantage 1: Consitent layout whatever you do
+I can write stuff in **R-Markdown** and it will appear in Word with the Layout
+I pre-defined in my style.docx. Very nice indeed. 
+This means I can make sure that all documents I write have exactly the same layout because they all use the same style template. Set a layout once and you don't need to care about it anymore.
+
+# Advantage 2: Easily including graphs/images/tables produced in R into your document
+But that is only part of the beauty. I can also include all sorts of R code chunks, and easily include graphs and tables.
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+# Advantage 3: Set global variables, pieces of text that you can re-use in the whole document.
+
+You can use pre-defined variables in your text:
+
+```{r}
+email= "my_email@adress.com"
+```
+
+This is my `r email`
+
+# Advantage 4: Combining advantage 3 with databases
+If you combine this feature with an outside database, for example an excel sheet,
+and let R loop trough the rows, including certain variables in the text, you can create several equal documents with content changing according to a database.
+
+For example, if you have to write several letters to different people, this will
+come in very handy. 
+
+We can write one letter setting one set of values:
+
+```{r}
+Name= "Bob"
+Status= "Famous"
+Address= "Penny Lane"
+```
+
+To: `r Status` `r Name`           
+Address: `r Address`
+
+## Now lets write 3 letters to 3 customers at the same time:
+
+For this we need to use an additional R file which will call this markdown file!
+
+If we do not have this additional file, the next piece of code needs to be
+commented out!
+
+
+```{r}
+#row=data[rownames(data)==i,]
+#Name= row$Name
+#Status= row$Status
+#Address= row$Address
+```
+
+To: `r Status` `r Name`        
+Address: `r Address`
+
+
+
+
+
